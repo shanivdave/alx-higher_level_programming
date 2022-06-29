@@ -1,65 +1,87 @@
-The 0-add_integer.py module
-======================
+The 0-add_integer test module.
+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
 
-Using ``add_integer``
--------------------
+Using "add_integer"
+++++++++++++++++++++++++++++++++++++
 
-Testing the add_integer function.  First import
-``add_integer`` from the ``0-add_integer`` module:
+Import function from module:
 
-    >>> add_integer = __import__('0-add_integer').add_integer
+	>>> add_integer = __import__('0-add_integer').add_integer
 
-Now Testing:
+Test one int argument:
+	>>> add_integer(2)
+	100
 
-------------------------------------
-    test if it raises TypeError if arguments aren't int of float
+Test one int argument and check default second:
+	>>> add_integer(0)
+	98
 
-    >>> add_integer('hi', 5) # doctest: +ELLIPSIS
-    Traceback (most recent call last):
-    TypeError: ... must be an integer
+Test one float:
+	>>> add_integer(166.7)
+	264
 
-------------------------------------
-    test if floats are casted to int
+Test one negative float:
+	>>> add_integer(-97.978)
+	1
 
-    >>> r = add_integer(4.54, 5) # doctest: +ELLIPSIS
-    >>> print(r)
-    9
+Test 2 integers:
+	>>> add_integer(55, 500)
+	555
 
-------------------------------------
-    test if it will raise a error when passing no arguments
+Test 2 long ints:
+	>>> add_integer(11111111, 22222222)
+	33333333
 
-    >>> r = add_integer() # doctest: +ELLIPSIS, +IGNORE_EXCEPTION_DETAIL
-    Traceback (most recent call last):
-	    ...
-    TypeError:
+Test positive + negative ints
+	>>> add_integer(167, -7)
+	160
 
-------------------------------------
-    test if it gor only one argument
+Test negative, positive ints:
+	>>> add_integer(-100, 200)
+	100
 
-    >>> r = add_integer(-5) # doctest: +ELLIPSIS
-    >>> print(r)
-    93
+Test integer and float:
+	>>> add_integer(100, 3.907)
+	103
 
-------------------------------------
-    test if it got only one None argument
+Add infinity:
+	>>> add_integer(float('inf'), float(-inf))
+	Traceback (most recent call last):
+	...
+	OverflowError: cannot convert float infinity to integer.
 
-    >>> r = add_integer(None) # doctest: +ELLIPSIS
-    Traceback (most recent call last):
+Add NaN:
+	>>> add_integer(1, float('Nan')
+	Traceback (most recent call last):
+	...
+	ValueError: cannot convert float NaN to integer.
+
+Test first arg invalid:
+	>>> add_integer("rad", 0)
+	Traceback (most recent call last):
+	...
+	TypeError: a must be an integer.
+
+Test first arg invalid:
+        >>> add_integer(0, "rad")
+        Traceback (most recent call last):
         ...
-    TypeError: ... must be an integer
+        TypeError: b must be an integer.
 
-------------------------------------
-    test if it got a True argument
-
-    >>> r = add_integer(True) # doctest: +ELLIPSIS
-    Traceback (most recent call last):
+Test both args invalid:
+        >>> add_integer("rad", {})
+        Traceback (most recent call last):
         ...
-    TypeError: ... must be an integer
+        TypeError: a must be an integer.
 
-------------------------------------
-    test if it got a False argument
-
-    >>> r = add_integer(False) # doctest: +ELLIPSIS
-    Traceback (most recent call last):
+Test 2 strings:
+        >>> add_integer("UNIX", "TOO COOL"
+        Traceback (most recent call last):
         ...
-    TypeError: ...must be an integer
+        TypeError: a must be an integer.
+
+Test float overflow:
+	>>> add_integer(float('inf'), 0)
+	Traceback (most recent call last):
+        ...
+	OverflowError: cannot convert float infinity to int.
