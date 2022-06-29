@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """Documentation for a matrix division function"""
 
-
 def matrix_divided(matrix, div):
     """Function divides a matrix by an integer or float
     Args:
