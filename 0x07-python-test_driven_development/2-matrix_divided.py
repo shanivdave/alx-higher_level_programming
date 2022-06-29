@@ -1,44 +1,30 @@
 #!/usr/bin/python3
-"""Documentation for a matrix division function"""
+"""
+This is the "2-matrix_divided" module.
+The 2-matrix_divided module supplies one function, matrix_divided(matrix, div).
+"""
+
 
 def matrix_divided(matrix, div):
-    """Function divides a matrix by an integer or float
-    Args:
-       matrix (list): the matrix to divide
-       div (int or float): the number to divide the matrix by
-    Returns:
-       new matrix containing the divided numbers
-    """
-    if matrix is None:
-        raise TypeError("matrix must be a matrix (list of lists) of integers/\
-        floats")
-    if len(matrix) == 0:
-        raise TypeError("matrix must be a matrix (list of lists of integers)/\
-        floats")
-    if type(matrix) == tuple or type(matrix) == set:
-        raise TypeError("matrix must be a matrix (list of lists of integers)/\
-        floats")
-    for i in matrix:
-        if len(i) == 0:
-            raise TypeError("matrix must be a matrix(list of lists of integers)
-                            floats")
-        if type(i) == tuple or type(i) == set:
-            raise TypeError("matrix must be a matrix(list of lists of integers)
-                            floats")
-    if div == 0:
-        raise ZeroDivisionError("dividion by zero")
-    if isinstance(div, int) is False and isinstance(div, float) is False:
-        raise TypeError("div must be a number")
-    length = len(matrix[0])
-    for matrices in matrix:
-        if len(matrices) != length:
+    """Divides all elements in the matrix by div"""
+    if type(matrix) is not list:
+        raise TypeError(
+            "matrix must be a matrix (list of lists) of integers/floats")
+    size = None
+    for l in matrix:
+        if type(l) is not list:
+            raise TypeError(
+                "matrix must be a matrix (list of lists) of integers/floats")
+        if size is None:
+            size = len(l)
+        elif size != len(l):
             raise TypeError("Each row of the matrix must have the same size")
-    for i in range(len(matrix)):
-        for j in range(len(matrix[i])):
-            if type(matrix[i][j]) != int and type(matrix[i][j]) != float:
-                raise TypeError("Matrix must be a matrix (list of lists) of \
-                                integers/floats")
-    new_matrix = []
-    for i in matrix:
-        new_matrix.append(list(map(lambda x: round(x / div, 2), i)))
-    return new_matrix
+        for i in l:
+            if type(i) is not int and type(i) is not float:
+                raise TypeError("matrix must be a matrix (list of lists) of \
+integers/floats")
+    if type(div) is not int and type(div) is not float:
+        raise TypeError("div must be a number")
+    if div == 0:
+        raise ZeroDivisionError("division by zero")
+    return [[round(i / div, 2) for i in l] for l in matrix]
