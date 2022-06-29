@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """This module contains calculation functions"""
 
+
 def add_integer(a, b=98):
     """"This function does the addition of 2 arguments
     args:
@@ -18,4 +19,5 @@ def add_integer(a, b=98):
         a = int(a)
     if type(b) is float:
         b = int(b)
+        
         return a + b
