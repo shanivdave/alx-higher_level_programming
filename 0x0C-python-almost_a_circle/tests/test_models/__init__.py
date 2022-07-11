@@ -1,3 +1,4 @@
 #!/usr/bin/python3
-"""Classes for working with polygon models.
+"""
+Classes for working with polygon models.
 """
