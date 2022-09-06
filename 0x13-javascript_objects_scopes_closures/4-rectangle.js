@@ -1,31 +1,29 @@
 #!/usr/bin/node
-// Class for rectangle with height and width parameters and various methods
-
-module.exports = class Rectangle {
+/* class: Rectangle that defines a Rectangle takes two arguments,
+create a instance method for print() the Rectangle with an 'X',
+rotate() for exchange the values of height and width,
+double () for multiply the values of height and width. */
+class Rectangle {
   constructor (w, h) {
-    if (w > 0 && h > 0) {
+    if (Number(w) > 0 && Number(h) > 0) {
       this.width = w;
       this.height = h;
     }
   }
 
   print () {
-    for (let i = 0; i < this.height; i++) {
-      for (let j = 0; j < this.width; j++) {
-        process.stdout.write('X');
-      }
-      process.stdout.write('\n');
+    for (let x = 0; x < this.height; x++) {
+      console.log('X'.repeat(this.width));
     }
   }
 
   rotate () {
-    let temp = this.height;
-    this.height = this.width;
-    this.width = temp;
+    [this.height, this.width] = [this.width, this.height];
   }
 
   double () {
-    this.width *= 2;
-    this.height *= 2;
+    this.height = this.height * 2;
+    this.width = this.width * 2;
   }
-};
+}
+module.exports = Rectangle;
