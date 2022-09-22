@@ -30,4 +30,4 @@ def find_peak(list_of_integers):
         # find the peak recursively in the right sublist
         return recursive(list_of_integers, mid + 1, right)
 
-    return recursive(list_of_integersA)
+    return recursive(list_of_integers)
