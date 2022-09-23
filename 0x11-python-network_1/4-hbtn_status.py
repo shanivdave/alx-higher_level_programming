@@ -5,7 +5,6 @@ You must use the package requests.
 """
 import requests
 
-
 if __name__ == "__main__":
     url = 'https://intranet.hbtn.io/status'
     r = requests.get(url)
